@@ -1,0 +1,81 @@
+/*
+ * Copyright (C) 2021 Lazaro Cesar del Pino Olivera
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package ldelpino.graph.graph_implementation;
+
+import ldelpino.graph.api.NotDirectedGraph;
+import ldelpino.graph.api.WeightedEdgeGraph;
+import ldelpino.graph.api.WeightedVertexGraph;
+import ldelpino.graph.edge.Edge;
+import ldelpino.graph.edge.WeightedEdge;
+import ldelpino.graph.vertex.DefaultVertex;
+import ldelpino.graph.vertex.Vertex;
+import ldelpino.graph.vertex.WeightedVertex;
+
+/**
+ * Permite la creacion de grafos no dirigidos con peso en las aristas y en los
+ * vertices
+ *
+ * @author EL ROJO
+ * @param <T> El tipo de dato de la informacion de los vertices.
+ * @param <K> El tipo de dato del peso de los vertices.
+ * @param <R> El tipo de dato del peso de las aristas.
+ */
+public class WeightedVertexEdgeNotDirectedGraph<T, K, R> extends NotDirectedGraph<T> implements
+        WeightedVertexGraph<T, K>, WeightedEdgeGraph<T, R> {
+
+    @Override
+    public final boolean isWeightedVertex() {
+        return true;
+    }
+
+    @Override
+    public final boolean isWeigthedEdge() {
+        return true;
+    }
+
+    @Override
+    public boolean insertVertex(T info, K weight) {
+        return insertVertex(new WeightedVertex<>(info, weight));
+    }
+
+    @Override
+    public K getWeightVertex(T info) {
+        WeightedVertex<T, K> vertex = (WeightedVertex<T, K>) getVertex(info);
+        return vertex.getWeight();
+    }
+
+    @Override
+    public boolean insertEdge(T infoTail, T infoHead, R weight) {
+        if (existVertex(infoTail) && existVertex(infoHead)) {
+            Vertex<T> vertexTail = getVertex(infoTail);
+            Vertex<T> vertexHead = getVertex(infoHead);
+            WeightedEdge<T, R> edgeTail = new WeightedEdge<>(vertexTail, vertexHead, weight);
+            WeightedEdge<T, R> edgeHead = new WeightedEdge<>(vertexHead, vertexTail, weight);
+            return vertexTail.insertEdge(edgeTail) && vertexHead.insertEdge(edgeHead);
+        }
+        return false;
+    }
+
+    @Override
+    public R getEdgeWeight(T infoTail, T infoHead) {
+        DefaultVertex<T> vertexTail = (DefaultVertex<T>) getVertex(infoTail);
+        Edge<T> edge = vertexTail.getEdge(getVertex(infoHead));
+        WeightedEdge<T, R> weightedEdge = (WeightedEdge<T, R>) edge;
+        return weightedEdge.getWeight();
+    }
+
+}
