@@ -8,18 +8,18 @@ binarias entre elementos de un conjunto.
 		
 ## Principales Objetivos
 
-- [ ] Creacion de las clases necesarias para el entendimiento de un grafo.
-- [ ] Creacion de clases de manera tal que puedan ser utilizadas y reutilizadas.
-- [ ] Creacion de las principales funciones de grafos, vertices y aristas.
-- [ ] Creacion de clases que permitan abstraer el concepto de grafo, el concepto de 
+- [x] Creacion de las clases necesarias para el entendimiento de un grafo.
+- [x] Creacion de clases de manera tal que puedan ser utilizadas y reutilizadas.
+- [x] Creacion de las principales funciones de grafos, vertices y aristas.
+- [x] Creacion de clases que permitan abstraer el concepto de grafo, el concepto de 
 vertice y el concepto de arista, permitiendo la reutilizacion de las clases. 
-- [ ] Creacion de vertices y aristas que sirvan como clases predeterminadas para ser utiliadas como instancias.
-- [ ] Creacion de los distintos tipos de grafos mas utilizados (grafos dirigidos y no dirigidos, grafos con 
+- [x] Creacion de vertices y aristas que sirvan como clases predeterminadas para ser utiliadas como instancias.
+- [x] Creacion de los distintos tipos de grafos mas utilizados (grafos dirigidos y no dirigidos, grafos con 
 ponderados y no ponderados), asi como otros subtipos de grafos.
-- [ ] Creacion de las funcionalidades mas necesarias de un grafo.
-- [ ] Creacion de las clases necesarias que permitan la utilizacion del grafo para multiples hilos de ejecucion.
-- [ ] Creacion de la libreria bajo la plataforma Apache Maven.
-- [ ] Creacion de la documentacion necesaria.
+- [x] Creacion de las funcionalidades mas necesarias de un grafo.
+- [x] Creacion de las clases necesarias que permitan la utilizacion del grafo para multiples hilos de ejecucion.
+- [x] Creacion de la libreria bajo la plataforma Apache Maven.
+- [x] Creacion de la documentacion necesaria.
 		
 ## Requerimientos del Sistema:
 
@@ -29,8 +29,6 @@ La libreria fue realizada bajo la version 16.0.1 de la maquina virtual de Java.
 
 **Maven:**
 La libreria fue realizada a partir de [Apache Maven](https://maven.apache.org/) en su version 3.8.1	
-
-### Requerimientos especulativos
 
 **Memoria:**
 No existen requisitos minimos de memoria para su utilizacion.
