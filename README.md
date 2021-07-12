@@ -50,7 +50,6 @@ ponderados y no ponderados), asi como otros subtipos de grafos.
 ### Modificaciones Pendientes
 
 - [ ] Estableciento de las pruebas unitarias con *JUnit*.
-- [ ] Creacion de los diferentes subtipos de grafos, como son grafos lexicograficos, diccionario, balanceado, B, RojiNegro.
 - [ ] Creacion de metodos utiles de busqueda de vertices y/o aristas y calculo de caminos.
 - [ ] Creacion de una documentacion mas amplia que permita conocer a fondo el funcionamiento de la libreria.
 		
