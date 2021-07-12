@@ -81,8 +81,13 @@ public interface Vertex<T> {
 
     /**
      * Devuelve la cantidad de vertices adyacentes.
+     * <p>
+     * La cantidad de adyacentes difiere de la cantidad de aristas en que la
+     * cantidad de aristas, son todas las aristas del vertices, mientras, que la
+     * cantidad de adyacentes es la cantidad de aristas que tienen a este
+     * vertice como cola.</p>
      *
-     * @return ala cantidad de vertices adyacentes.
+     * @return la cantidad de vertices adyacentes.
      */
     public int getAdjacentsCount();
 
@@ -94,17 +99,16 @@ public interface Vertex<T> {
     public int getEdgesCount();
 
     /**
-     * Inserta una nueva arista en la coleccion de aristas de este vertice.
+     * Inserta una nueva arista en este vertice.
      *
-     * @param edge la nueva arista a ser insertada en la coleccion de aristas de
-     * este vertice.
+     * @param edge la nueva arista a ser insertada en este vertice.
      * @return <b>true</b> si la arista fue insertada, de lo contrario devuelve
      * <b>false</b>.
      */
     public boolean insertEdge(Edge<T> edge);
 
     /**
-     * Remueve una nueva arista en la coleccion de aristas de este vertice.
+     * Remueve una arista de este vertice.
      *
      * @param vertex el vertice que hace funcion de cabeza en la arista a ser
      * removida.
@@ -116,8 +120,8 @@ public interface Vertex<T> {
     /**
      * Establece si un vertice es adyacente con este vertice.
      * <p>
-     * Dos vertices son adyacentes si el vertice esta contenido como cabeza en
-     * una de las aristas de la coleccion de aristas de este vertice.</p>
+     * Dos vertices son adyacentes si existe una arista que tiene a este vertice
+     * como cola y al vertice establecido como cabeza.</p>
      *
      * @param head el vertice con el cual verificar su adyacencia.
      * @return <b>true</b> si los dos vertices son adyacentes, de lo contrario
