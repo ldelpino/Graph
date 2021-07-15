@@ -19,6 +19,13 @@ package ldelpino.graph.api;
 import java.util.Objects;
 
 /**
+ * Permite la creacion de un numero entero aritmetico.
+ * <p>
+ * Un numero aritmetico es un objeto numerico que herede de la clase
+ * {@link java.lang.Number}, que permite operaciones aritmetcas basicas.</p>
+ * <p>
+ * La clase permite la creacion de un numero entero no decimal, el cual se puede
+ * sumar, restar, comparar, incrementar, decrementar, etc..</p>
  *
  * @author Lazaro Cesar del Pino Olivera <elrojo960905@gmail.com>
  */
@@ -26,35 +33,67 @@ public class IntegerAritmethicNumber implements AritmethicNumber<Integer> {
 
     private Integer weight;
 
+    /**
+     *
+     * @param weight
+     */
     public IntegerAritmethicNumber(Integer weight) {
         this.weight = weight;
     }
 
+    /**
+     *
+     * @param otherNumber
+     * @return
+     */
     @Override
     public Integer sum(Integer otherNumber) {
         return weight + otherNumber;
     }
 
+    /**
+     *
+     * @param otherNumber
+     * @return
+     */
     @Override
     public Integer substract(Integer otherNumber) {
         return weight - otherNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Integer getNumber() {
         return weight;
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(Integer o) {
         return weight.compareTo(o);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return weight.toString();
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (o instanceof Integer integer) {
@@ -66,6 +105,10 @@ public class IntegerAritmethicNumber implements AritmethicNumber<Integer> {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -73,16 +116,26 @@ public class IntegerAritmethicNumber implements AritmethicNumber<Integer> {
         return hash;
     }
 
+    /**
+     *
+     */
     @Override
     public void increment() {
         weight += 1;
     }
 
+    /**
+     *
+     */
     @Override
     public void decrement() {
         weight -= 1;
     }
 
+    /**
+     *
+     * @param otherAritmethicNumber
+     */
     @Override
     public void sumAndAsign(AritmethicNumber<Integer> otherAritmethicNumber) {
         weight = sum(otherAritmethicNumber.getNumber());

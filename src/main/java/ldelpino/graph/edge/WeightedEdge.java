@@ -80,6 +80,10 @@ public class WeightedEdge<T, K> extends AbstractEdge<T> {
         this.weight = weight;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeighted() {
         return true;

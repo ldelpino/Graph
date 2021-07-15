@@ -42,6 +42,9 @@ import ldelpino.graph.Graph;
  */
 public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
 
+    /**
+     *
+     */
     public static final long SERIALVERSIONUID = 1L;
     private final Graph<T> graph;
     private final Object mutex;
@@ -67,6 +70,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         this.mutex = this;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isDirected() {
         synchronized (mutex) {
@@ -74,6 +81,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isWeightedVertex() {
         synchronized (mutex) {
@@ -81,6 +92,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isWeigthedEdge() {
         synchronized (mutex) {
@@ -88,6 +103,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isCyclic() {
         synchronized (mutex) {
@@ -95,6 +114,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getVertexCount() {
         synchronized (mutex) {
@@ -102,6 +125,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
     public int getEdgesCount(T info) {
         synchronized (mutex) {
@@ -109,6 +137,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getTotalEdgesCount() {
         synchronized (mutex) {
@@ -116,6 +148,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Collection<T> getVertices() {
         synchronized (mutex) {
@@ -123,6 +159,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean existVerticesDisconnected() {
         synchronized (mutex) {
@@ -130,6 +170,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Collection<T> getDisconnectedVertices() {
         synchronized (mutex) {
@@ -137,6 +181,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Collection<T> removeDisconnectedVertices() {
         synchronized (mutex) {
@@ -144,6 +192,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
     public int degree(T info) {
         synchronized (mutex) {
@@ -151,6 +204,12 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @return
+     */
     @Override
     public boolean areAdjacents(T infoTail, T infoHead) {
         synchronized (mutex) {
@@ -158,6 +217,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
     public Collection<T> getAdjacents(T info) {
         synchronized (mutex) {
@@ -165,13 +229,23 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
-    public boolean removeVertex(T info) {
+    public T removeVertex(T info) {
         synchronized (mutex) {
             return graph.removeVertex(info);
         }
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
     public Collection<T> removeVertexCascade(T info) {
         synchronized (mutex) {
@@ -179,6 +253,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
     public boolean existVertex(T info) {
         synchronized (mutex) {
@@ -186,6 +265,12 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @return
+     */
     @Override
     public boolean removeEdge(T infoTail, T infoHead) {
         synchronized (mutex) {
@@ -193,6 +278,12 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @return
+     */
     @Override
     public boolean existPath(T infoTail, T infoHead) {
         synchronized (mutex) {
@@ -200,6 +291,13 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @param length
+     * @return
+     */
     @Override
     public boolean existPathWithLength(T infoTail, T infoHead, int length) {
         synchronized (mutex) {
@@ -207,6 +305,13 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @param path
+     * @return
+     */
     @Override
     public AritmethicNumber djisktra(T infoTail, T infoHead, List<T> path) {
         synchronized (mutex) {
@@ -214,6 +319,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isEulerPath() {
         synchronized (mutex) {
@@ -221,6 +330,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<T> eulerPath() {
         synchronized (mutex) {
@@ -228,6 +341,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int[][] getIncidenceMatrix() {
         synchronized (mutex) {
@@ -235,6 +352,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int[][] getAdyacentsMatrix() {
         synchronized (mutex) {
@@ -242,6 +363,9 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void cleanGraph() {
         synchronized (mutex) {
@@ -249,6 +373,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int size() {
         synchronized (mutex) {
@@ -256,6 +384,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isEmpty() {
         synchronized (mutex) {
@@ -263,6 +395,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     @Override
     public boolean contains(Object o) {
         synchronized (mutex) {
@@ -270,6 +407,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Iterator<T> iterator() {
         synchronized (mutex) {
@@ -277,6 +418,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Object[] toArray() {
         synchronized (mutex) {
@@ -284,6 +429,12 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param <T>
+     * @param a
+     * @return
+     */
     @Override
     public <T> T[] toArray(T[] a) {
         synchronized (mutex) {
@@ -291,6 +442,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param e
+     * @return
+     */
     @Override
     public boolean add(T e) {
         synchronized (mutex) {
@@ -298,6 +454,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     @Override
     public boolean remove(Object o) {
         synchronized (mutex) {
@@ -305,6 +466,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     @Override
     public boolean containsAll(Collection<?> c) {
         synchronized (mutex) {
@@ -312,6 +478,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     @Override
     public boolean addAll(Collection<? extends T> c) {
         synchronized (mutex) {
@@ -319,6 +490,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     @Override
     public boolean removeAll(Collection<?> c) {
         synchronized (mutex) {
@@ -326,6 +502,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     @Override
     public boolean retainAll(Collection<?> c) {
         synchronized (mutex) {
@@ -333,6 +514,9 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void clear() {
         synchronized (mutex) {
@@ -340,6 +524,11 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         }
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         synchronized (mutex) {
@@ -350,6 +539,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -358,6 +551,10 @@ public abstract class SynchronizedGraph<T> implements Graph<T>, Serializable {
         return hash;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return graph.toString();

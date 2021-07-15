@@ -62,11 +62,23 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         this.vertices = new LinkedList<>();
     }
 
+    /**
+     * Devuelve la cantidad de vertices en el grafo.
+     *
+     * @return la cantidad de vertices en el grafo.
+     */
     @Override
     public int getVertexCount() {
         return getVertices0().size();
     }
 
+    /**
+     * Devuelve la cantidad de aristas en un vertice del grafo.
+     *
+     * @param info el vertice que esta contenido en el grafo.
+     * @return numero mayor o igual que cero si el vertice esta contenido en el
+     * grafo, de lo contrario devuelve <b>-1</b>
+     */
     @Override
     public int getEdgesCount(T info) {
         if (existVertex(info)) {
@@ -75,6 +87,12 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return -1;
     }
 
+    /**
+     * Devuelve el total de aristas del grafo.
+     *
+     * @return un numero mayor que cero si existen aristas en el grafo, de lo
+     * contrario devuelve <b>0</b>.
+     */
     @Override
     public int getTotalEdgesCount() {
         int total = 0;
@@ -83,31 +101,69 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return total;
     }
 
+    /**
+     * Devuelve la coleccion de vertices del grafo.
+     *
+     * @return una coleccion con los vertices del grafo.
+     */
     @Override
     public Collection<T> getVertices() {
         return getCollectionVertices(getVertices0());
     }
 
+    /**
+     * Establece si existe un vertice en el grafo.
+     *
+     * @param info el vertice a verificar su existencia en el grafo.
+     * @return <b>true</b> si el vertice esta contenido en el grafo, de lo
+     * contrario devuelve <b>false</b>.
+     */
     @Override
     public boolean existVertex(T info) {
         return contains(info);
     }
 
+    /**
+     * Remueve el vertice del grafo, si este existe.
+     *
+     * @param info el vertice a eliminar del grafo.
+     * @return el vertice eliminado, si fue eliminado correctamete del grafo, de
+     * lo contrario devuelve <b>null</b>.
+     */
     @Override
-    public boolean removeVertex(T info) {
+    public T removeVertex(T info) {
         if (existVertex(info)) {
             Vertex<T> vertex = getVertex(info);
-            removeVertex(vertex);
-            return true;
+            return removeVertex(vertex);
         }
-        return false;
+        return null;
     }
 
+    /**
+     * Devuelve una coleccion con los vertices adyacentes a un vertice
+     * establecido, si este esta contenido dentro del grafo.
+     *
+     * @param info el vertice contenido dentro del grafo.
+     * @return una coleccion con los vertices adyacentes si el vertice existe y
+     * esta contenido dentro del grafo, de lo contrario devuelve <b>false</b>.
+     */
     @Override
     public Collection<T> getAdjacents(T info) {
-        return getCollectionVertices(getVertex(info).getAdjacents());
+        if (existVertex(info)) {
+            return getCollectionVertices(getVertex(info).getAdjacents());
+        }
+        return null;
     }
 
+    /**
+     * Establece si existe un camino entre dos vertices contenidos dentro del
+     * grafo.
+     *
+     * @param infoTail el vertice inicial en el camino.
+     * @param infoHead el vertice final en el camino.
+     * @return <b>true</b> si los vertices estan contenidos en el grafo y existe
+     * un camino entre los dos vertices, de lo contrario devuelve <b>false</b>.
+     */
     @Override
     public boolean existPath(T infoTail, T infoHead) {
         if (existVertex(infoTail) && existVertex(infoHead) && !infoTail.equals(infoHead)) {
@@ -119,11 +175,28 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return false;
     }
 
+    /**
+     * Vacia el grafo completamente.
+     * <p>
+     * Vaciar el grafo conlleva eliminar todos los vertices y las aristas del
+     * mismo.</p>
+     */
     @Override
     public void cleanGraph() {
         getVertices0().clear();
     }
 
+    /**
+     * Establece si existe un camino entre dos vertices con una longitud
+     * especificada, si existen los vertices.
+     *
+     * @param infoTail el vertice inicial en el camino.
+     * @param infoHead el vertice final en el camino.
+     * @param length la longitud especificada.
+     * @return <b>true</b> si los vertices estan contenidos dentro del grafo y
+     * existe un camino con una longitud especificada, de lo contrario devuelve
+     * <b>false</b>.
+     */
     @Override
     public boolean existPathWithLength(T infoTail, T infoHead, int length) {
         boolean found = false;
@@ -133,15 +206,36 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return found;
     }
 
+    /**
+     * Devuelve el vertice con mayor cantidad de adyacentes.
+     *
+     * @return devuelve el vertice con mayor cantidad de adyacentes si el grafo
+     * no esta vacio, de lo contrario devuelve <b>null</b>.
+     */
     public T vertexWithMoreAdjacents() {
         return vertexWithMoreAdjacents0().getInfo();
     }
 
+    /**
+     * Establece si existen vertices desconectados en el grafo.
+     * <p>
+     * Los vertices desconectados son aquellos vertices que no tienen aristas
+     * con otros vertices.</p>
+     *
+     * @return <b>true</b> si existen vertices desconectados en el grafo, de lo
+     * contrario devuelve <b>false</b>.
+     */
     @Override
     public boolean existVerticesDisconnected() {
         return getVertices0().stream().anyMatch((v) -> (degree(v.getInfo()) == 0));
     }
 
+    /**
+     * Devuelve una coleccion de vertices desconectados, si existen.
+     *
+     * @return una coleccion de los vertices desconectados si existen, de lo
+     * contrario devuelve una coleccion vacia.
+     */
     @Override
     public Collection<T> getDisconnectedVertices() {
         Collection<T> disconnected = new LinkedList<>();
@@ -155,6 +249,12 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return disconnected;
     }
 
+    /**
+     * Remueve una coleccion de vertices desconectados.
+     *
+     * @return una coleccion de vertices desconectados, si existen, de lo
+     * contrario devuelve un coleccion vacia.
+     */
     @Override
     public Collection<T> removeDisconnectedVertices() {
         Collection<T> disconnected = getDisconnectedVertices();
@@ -166,6 +266,14 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return disconnected;
     }
 
+    /**
+     * Remueve un conjuntos de vertices enlazados a partir de un vertice
+     * inicial, si este existe.
+     *
+     * @param info el vertice inicial.
+     * @return una coleccion de vertices eliminados del grafo, si el vertice
+     * inicial existe, de lo contrario devuleve una coleccion vacia.
+     */
     @Override
     public Collection<T> removeVertexCascade(T info) {
         Collection<Vertex<T>> deleted = new LinkedList<>();
@@ -179,8 +287,21 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return getCollectionVertices(deleted);
     }
 
+    /**
+     * Devuelve el camino mas corto entre dos vertices, si estos existen y
+     * existe un camino entre ellos.
+     *
+     * @param infoTail el vertice inicial en el camino.
+     * @param infoHead el vertice final en el camino.
+     * @param path el camino entre los dos vertices.
+     * @return un numero que coincide con la longitud del camino mas corto, si
+     * los vertices existen y existe un camino, si no existe un camino o los
+     * vetices no existen devuelve <b>-1</b>, si los vertices son iguales
+     * devuelve<b>0</b>, si los vertices son adyacentes devuelve <b>1</b>.
+     */
     @Override
     public AritmethicNumber djisktra(T infoTail, T infoHead, List<T> path) {
+        path = new LinkedList<>();
         if (existVertex(infoTail) && existVertex(infoHead)) {
             Vertex<T> initialVertex = getVertex(infoTail);
             Vertex<T> finalVertex = getVertex(infoHead);
@@ -192,6 +313,25 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return null;
     }
 
+    /**
+     * Devuelve el camino mas corto entre dos vertices, si estos existen y
+     * existe un camino entre ellos.
+     * <p>
+     * El metodo no esta pensado para ser utilizado dirctamente, en su lugar
+     * utilice el metodo
+     * {@link ldelpino.graph.Graph#djisktra(java.lang.Object, java.lang.Object, java.util.List)}</p>
+     * <p>
+     * El metodo realiza el algoritmo de forma recursiva.</p>
+     *
+     * @param initialVertex el vertice inicial en el camino.
+     * @param finalVertex el vertice final en el camino.
+     * @param path el camino entre los dos vertices.
+     * @param visited los vertices que ya han sido vsitados.
+     * @return un numero que coincide con la longitud del camino mas corto, si
+     * los vertices existen y existe un camino, si no existe un camino o los
+     * vetices no existen devuelve <b>-1</b>, si los vertices son iguales
+     * devuelve<b>0</b>, si los vertices son adyacentes devuelve <b>1</b>.
+     */
     protected AritmethicNumber<Integer> djisktraAbstract(Vertex<T> initialVertex, Vertex<T> finalVertex,
             List<T> path, List<Vertex<T>> visited) {
         if (initialVertex.isAdjacents(finalVertex)) {
@@ -226,11 +366,25 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return new IntegerAritmethicNumber(-1);
     }
 
+    /**
+     * Establece si existe un camino de Euler en el grafo.
+     * <p>
+     * Existe un camino de Euler si no existen vertices desconectados, y todos
+     * los vertices tienen grado <b>par</b>.</p>
+     *
+     * @return <b>true</b> si existe un camino de Euler.
+     */
     @Override
     public boolean isEulerPath() {
         return eulerPath().isEmpty();
     }
 
+    /**
+     * Devuelve el camino de Euler en el grafo, si este existe.
+     *
+     * @return una lista ordenada con el camino de Euler, si este existe, de lo
+     * contrario devuelve una lista vacia.
+     */
     @Override
     public List<T> eulerPath() {
         LinkedList<T> camino = new LinkedList<>();
@@ -251,6 +405,15 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return camino;
     }
 
+    /**
+     * Devuelve la matriz de incidencia del grafo.
+     * <p>
+     * La matriz de incidencia es una matriz igual al total de vertices por el
+     * total de aristas, donde los elementos son <b>1</b> si la arista es
+     * incidente con el vertice, de lo contrario contiene valor <b>0</b>.</p>
+     *
+     * @return una matriz de enteros con valores entre <b>1</b> y <b>0</b>.
+     */
     @Override
     public int[][] getIncidenceMatrix() {
         int totalAristas = getTotalEdgesCount();
@@ -270,6 +433,15 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return matrix;
     }
 
+    /**
+     * Devuelve la matriz de adyacencia del grafo.
+     * <p>
+     * La matriz de adyacencia es una matriz igual al total de vertices al
+     * cuadrado, donde los elementos son <b>1</b> si dos vertices son
+     * adyacentes, de lo contrario contiene valor <b>0</b>.</p>
+     *
+     * @return una matriz de enteros con valores entre <b>1</b> y <b>0</b>.
+     */
     @Override
     public int[][] getAdyacentsMatrix() {
         int[][] matrix = new int[getVertexCount()][getVertexCount()];
@@ -332,7 +504,6 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
      * <b>false</b>.
      */
     @Override
-    @SuppressWarnings("unchecked")
     public boolean remove(Object o) {
         //busqueda del vertice
         if (o instanceof Vertex vertex) {
@@ -459,6 +630,10 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -577,12 +752,16 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
      * Remueve un vertice del grafo
      *
      * @param vertex el vertice a ser removido.
+     * @return el vertice eliminado si este existe, de lo contrario devuelve
+     * <b>false</b>.
      */
-    protected void removeVertex(Vertex<T> vertex) {
+    protected T removeVertex(Vertex<T> vertex) {
+        T info = vertex.getInfo();
         getVertices0().remove(vertex);
         getVertices0().forEach((v) -> {
             v.removeEdge(vertex);
         });
+        return info;
     }
 
     /**
@@ -678,8 +857,8 @@ public abstract class AbstractGraph<T> extends AbstractCollection<T> implements 
 
     private void fillZeros(int[][] matrix) {
         for (int[] m : matrix) {
-            for (int e : m) {
-                e = 0;
+            for (int i = 0; i < m.length; i++) {
+                m[i] = 0;
             }
         }
     }

@@ -76,16 +76,28 @@ public abstract class AbstractVertex<T> implements Vertex<T>, Serializable {
         this.edges = new LinkedList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public T getInfo() {
         return info;
     }
 
+    /**
+     *
+     * @param info
+     */
     @Override
     public void setInfo(T info) {
         this.info = info;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Collection<Vertex<T>> getAdjacents() {
         LinkedList<Vertex<T>> vertices = new LinkedList<>();
@@ -95,6 +107,10 @@ public abstract class AbstractVertex<T> implements Vertex<T>, Serializable {
         return vertices;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getAdjacentsCount() {
         int count = 0;
@@ -103,11 +119,20 @@ public abstract class AbstractVertex<T> implements Vertex<T>, Serializable {
         return count;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getEdgesCount() {
         return getEdges().size();
     }
 
+    /**
+     *
+     * @param edge
+     * @return
+     */
     @Override
     public boolean insertEdge(Edge<T> edge) {
         if (!containsEdge(edge)) {
@@ -116,6 +141,11 @@ public abstract class AbstractVertex<T> implements Vertex<T>, Serializable {
         return false;
     }
 
+    /**
+     *
+     * @param vertex
+     * @return
+     */
     @Override
     public boolean removeEdge(Vertex<T> vertex) {
         boolean removido = false;
@@ -132,12 +162,20 @@ public abstract class AbstractVertex<T> implements Vertex<T>, Serializable {
         return removido;
     }
 
+    /**
+     *
+     * @param head
+     * @return
+     */
     @Override
     public boolean isAdjacents(Vertex<T> head) {
         return getEdges().stream().anyMatch((e) -> (e.getVertexTail().equals(this)
                 && e.getVertexHead().equals(head)));
     }
 
+    /**
+     *
+     */
     @Override
     public void disconnect() {
         edges.clear();
@@ -161,6 +199,10 @@ public abstract class AbstractVertex<T> implements Vertex<T>, Serializable {
         return info.equals(o);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;

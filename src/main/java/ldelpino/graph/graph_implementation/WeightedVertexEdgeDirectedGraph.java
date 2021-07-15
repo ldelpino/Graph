@@ -37,27 +37,53 @@ import ldelpino.graph.vertex.WeightedVertex;
 public class WeightedVertexEdgeDirectedGraph<T, K, R> extends DirectedGraph<T> implements
         WeightedVertexGraph<T, K>, WeightedEdgeGraph<T, R> {
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeightedVertex() {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeigthedEdge() {
         return true;
     }
 
+    /**
+     *
+     * @param info
+     * @param weight
+     * @return
+     */
     @Override
     public boolean insertVertex(T info, K weight) {
         return insertVertex(new WeightedVertex<>(info, weight));
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
     public K getWeightVertex(T info) {
         WeightedVertex<T, K> vertex = (WeightedVertex<T, K>) getVertex(info);
         return vertex.getWeight();
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @param weight
+     * @return
+     */
     @Override
     public boolean insertEdge(T infoTail, T infoHead, R weight) {
         if (existVertex(infoTail) && existVertex(infoHead)) {
@@ -69,6 +95,12 @@ public class WeightedVertexEdgeDirectedGraph<T, K, R> extends DirectedGraph<T> i
         return false;
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @return
+     */
     @Override
     public R getEdgeWeight(T infoTail, T infoHead) {
         DefaultVertex<T> vertexTail = (DefaultVertex<T>) getVertex(infoTail);

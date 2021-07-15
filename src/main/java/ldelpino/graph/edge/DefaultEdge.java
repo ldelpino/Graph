@@ -54,6 +54,10 @@ public class DefaultEdge<T> extends AbstractEdge<T> {
         super(tail, head);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeighted() {
         return false;

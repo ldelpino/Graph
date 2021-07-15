@@ -55,11 +55,19 @@ public abstract class NotDirectedGraph<T> extends AbstractGraph<T> {
         super();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isDirected() {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isCyclic() {
         boolean cycle = false;
@@ -71,6 +79,11 @@ public abstract class NotDirectedGraph<T> extends AbstractGraph<T> {
         return cycle;
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
     public int degree(T info) {
         int degree = -1;
@@ -80,6 +93,12 @@ public abstract class NotDirectedGraph<T> extends AbstractGraph<T> {
         return degree;
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @return
+     */
     @Override
     public boolean areAdjacents(T infoTail, T infoHead) {
         Vertex<T> tailVertex = getVertex(infoTail);
@@ -87,6 +106,12 @@ public abstract class NotDirectedGraph<T> extends AbstractGraph<T> {
         return tailVertex.isAdjacents(headVertex) && headVertex.isAdjacents(tailVertex);
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @return
+     */
     @Override
     public boolean removeEdge(T infoTail, T infoHead) {
         if (areAdjacents(infoTail, infoHead)) {

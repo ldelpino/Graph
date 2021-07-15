@@ -49,16 +49,30 @@ import ldelpino.graph.vertex.Vertex;
  */
 public class SimpleDirectedGraph<T> extends DirectedGraph<T> implements SimpleVertexGraph<T>, SimpleEdgeGraph<T> {
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeightedVertex() {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeigthedEdge() {
         return false;
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @return
+     */
     @Override
     public boolean insertEdge(T infoTail, T infoHead) {
         if (existVertex(infoTail) && existVertex(infoHead)) {
@@ -70,6 +84,11 @@ public class SimpleDirectedGraph<T> extends DirectedGraph<T> implements SimpleVe
         return false;
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
     public boolean insertVertex(T info) {
         return insertVertex(new DefaultVertex<>(info));

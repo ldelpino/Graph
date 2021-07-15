@@ -199,8 +199,8 @@ public interface Graph<T> extends Collection<T> {
      * El grado de un vertice dependera de si el grafo es dirigido o no. Para un
      * grafo no dirigido el grado de un vertice sera su cantidad de vertices
      * adyacentes, mientras que para un grafo dirigido, el grado del vertice
-     * sera su cantidad de vertices adyacentes, mas la cantidad de vertices
-     * que lo tienen a el como adyacente.</p>
+     * sera su cantidad de vertices adyacentes, mas la cantidad de vertices que
+     * lo tienen a el como adyacente.</p>
      *
      * @param info la informacion del vertice.
      * @return el grado del vertice en el grafo.
@@ -229,10 +229,11 @@ public interface Graph<T> extends Collection<T> {
      * Elimina el vertice del grafo.
      *
      * @param info la informacion con la cual encontrar el vertice.
-     * @return <b>true</b> si el vertice fue removido, de lo contrario devuelve
-     * <b>false</b>.
+     * @return el vertice removido si el vertice fue eliminado correctamente, de
+     * lo contrario devuelve
+     * <b>null</b>.
      */
-    public boolean removeVertex(T info);
+    public T removeVertex(T info);
 
     /**
      * Remueve todos los vertices enlazados en forma de cascada a partir de un

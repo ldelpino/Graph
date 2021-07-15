@@ -64,6 +64,10 @@ public class WeightedVertex<T, K> extends AbstractVertex<T> {
         this.weight = weight;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeighted() {
         return true;
@@ -87,6 +91,11 @@ public class WeightedVertex<T, K> extends AbstractVertex<T> {
         this.weight = weight;
     }
 
+    /**
+     *
+     * @param head
+     * @return
+     */
     @Override
     public Edge<T> getEdge(Vertex<T> head) {
         return super.getEdge(head);
@@ -111,6 +120,10 @@ public class WeightedVertex<T, K> extends AbstractVertex<T> {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 3;

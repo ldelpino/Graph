@@ -58,11 +58,23 @@ public abstract class DirectedGraph<T> extends AbstractGraph<T> {
         super();
     }
 
+    /**
+     * Establece si el grafo es dirigido o no.
+     *
+     * @return <b>true</b> si el grafo es dirigido, de lo contrario
+     * devuelve<b>false</b>.
+     */
     @Override
     public final boolean isDirected() {
         return true;
     }
 
+    /**
+     * Establece si existe al menos un ciclo dentro del grafo.
+     *
+     * @return <b>true</b> si el grafo contiene al menos un ciclo, de lo
+     * contrario devuelve<b>false</b>.
+     */
     @Override
     public boolean isCyclic() {
         boolean cycle = false;
@@ -94,11 +106,25 @@ public abstract class DirectedGraph<T> extends AbstractGraph<T> {
         return degree;
     }
 
+    /**
+     * Remueve una arista del grafo, si los vertices de la arista existen.
+     *
+     * @param infoTail el vertice que hace funcion de cola.
+     * @param infoHead el vertice que hace funcion de cabeza.
+     * @return <b>true</b> si la arista fue eliminada correctamente, de lo
+     * contrario devuelve <b>false</b>.
+     */
     @Override
     public boolean removeEdge(T infoTail, T infoHead) {
         return getVertex(infoTail).removeEdge(getVertex(infoHead));
     }
 
+    /**
+     * Establece si dos vertices son adyacentes entre si.
+     * @param infoTail el vertice que hace funcion de cola.
+     * @param infoHead el vertice que hace funcion de cabeza.
+     * @return
+     */
     @Override
     public boolean areAdjacents(T infoTail, T infoHead) {
         return getVertex(infoTail).isAdjacents(getVertex(infoHead));

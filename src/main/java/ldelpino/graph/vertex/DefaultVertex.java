@@ -59,11 +59,20 @@ public class DefaultVertex<T> extends AbstractVertex<T> {
         super(info);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeighted() {
         return false;
     }
     
+    /**
+     *
+     * @param head
+     * @return
+     */
     @Override
     public Edge<T> getEdge(Vertex<T> head) {
         return super.getEdge(head);

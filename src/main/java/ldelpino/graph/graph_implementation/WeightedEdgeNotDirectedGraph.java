@@ -52,21 +52,41 @@ import ldelpino.graph.vertex.Vertex;
 public class WeightedEdgeNotDirectedGraph<T, K> extends NotDirectedGraph<T>
         implements SimpleVertexGraph<T>, WeightedEdgeGraph<T, K> {
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeightedVertex() {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public final boolean isWeigthedEdge() {
         return true;
     }
 
+    /**
+     *
+     * @param info
+     * @return
+     */
     @Override
     public boolean insertVertex(T info) {
         return insertVertex(new DefaultVertex<>(info));
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @param weight
+     * @return
+     */
     @Override
     public boolean insertEdge(T infoTail, T infoHead, K weight) {
         if (existVertex(infoTail) && existVertex(infoHead)) {
@@ -79,6 +99,12 @@ public class WeightedEdgeNotDirectedGraph<T, K> extends NotDirectedGraph<T>
         return false;
     }
 
+    /**
+     *
+     * @param infoTail
+     * @param infoHead
+     * @return
+     */
     @Override
     public K getEdgeWeight(T infoTail, T infoHead) {
         DefaultVertex<T> vertexTail = (DefaultVertex<T>) getVertex(infoTail);

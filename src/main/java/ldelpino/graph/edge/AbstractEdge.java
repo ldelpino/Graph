@@ -66,11 +66,19 @@ public abstract class AbstractEdge<T> implements Edge<T> {
         this.head = head;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Vertex<T> getVertexHead() {
         return head;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Vertex<T> getVertexTail() {
         return tail;
